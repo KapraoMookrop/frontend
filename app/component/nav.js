@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Nav() {
   return (
     <>
-      <nav class="navbar navbar-expand-lg container-fluid">
+      <nav class="navbar navbar-expand-lg container">
         <div class="container-fluid">
             <Link class="navbar-brand" href="/">
                 <img src="/img/logo.png" alt="Logo" width="100" class="d-inline-block align-text-center"></img>
@@ -26,8 +26,8 @@ export default function Nav() {
                 <Link class="nav-link" href="/contact"><i class="fa-solid fa-message me-1" aria-hidden="true"></i>Contact</Link>
               </li>
             </ul>
-            <button type="button" data-bs-toggle="modal" data-bs-target="#registerModal" class="btn btn-outline-success me-2"><i class="fa-solid fa-right-to-bracket me-1" aria-hidden="true"></i>Sign Up</button>
-            <button type="button" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-primary me-2"><i class="fa-solid fa-user-plus me-1" aria-hidden="true"></i>Sign In</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#registerModal" class="btn btn-primary me-2"><i class="fa-solid fa-user-plus me-1" aria-hidden="true"></i>Sign Up</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-success me-2"><i class="fa-solid fa-right-to-bracket me-1" aria-hidden="true"></i>Sign In</button>
           </div>
         </div>
       </nav>
