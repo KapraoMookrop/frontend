@@ -19,7 +19,7 @@ export default function Page() {
     // ฟังก์ชันในการดึงข้อมูลผู้ใช้
     async function getUsers() {
       try {
-        const res = await fetch('http://localhost:3000/api/users');
+        const res = await fetch('https://backend-taupe-one.vercel.app/api/users');
         if (!res.ok) {
           console.error('Failed to fetch data');
           return;
