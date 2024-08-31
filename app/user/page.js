@@ -6,36 +6,35 @@ import Swal from 'sweetalert2';
 
 export default function Page() {
   const [items, setItems] = useState([]);
-  const router = useRouter(); // ใช้ useRouter ในการเปลี่ยนเส้นทาง
+  const router = useRouter();
 
   useEffect(() => {
-    // ตรวจสอบว่าผู้ใช้ล็อกอินหรือไม่
     const token = localStorage.getItem('token');
     if (!token) {
-      // ถ้าไม่มี token ให้เปลี่ยนเส้นทางไปที่หน้า login
       router.push('/signin');
       return;
     }
 
-    // ฟังก์ชันในการดึงข้อมูลผู้ใช้
-    async function getUsers() {
-      try {
-        const res = await fetch('https://backend-taupe-one.vercel.app/api/users');
-        if (!res.ok) {
-          console.error('Failed to fetch data');
-          return;
-        }
-        const data = await res.json();
-        setItems(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
+    getUsers(); // Fetch users when the component mounts
 
-    getUsers();
-    const interval = setInterval(getUsers, 30000);
+    const interval = setInterval(getUsers, 30000); // Fetch users every 30 seconds
     return () => clearInterval(interval);
   }, [router]);
+
+  // Define getUsers before using it in handleDelete
+  async function getUsers() {
+    try {
+      const res = await fetch('https://backend-taupe-one.vercel.app/api/users');
+      if (!res.ok) {
+        console.error('Failed to fetch data');
+        return;
+      }
+      const data = await res.json();
+      setItems(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
 
   const handleDelete = async (id) => {
     const token = localStorage.getItem('token');
