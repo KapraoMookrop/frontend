@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 export default function Page() {
   const [items, setItems] = useState([]);
@@ -52,10 +53,34 @@ export default function Page() {
         },
       });
 
-      const result = await res.json();
-      console.log(result);
+      if (res.ok) {
+        await getUsers();  // Fetch the updated user list after deletion
+
+        // Show SweetAlert success notification
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'User has been deleted successfully.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+      } else {
+        const result = await res.json();
+        // Show SweetAlert error notification
+        Swal.fire({
+          title: 'Error!',
+          text: result.error || 'Failed to delete user.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+      }
     } catch (error) {
-      console.error('Error during fetch:', error);
+      // Show SweetAlert error notification for network or unexpected errors
+      Swal.fire({
+        title: 'Error!',
+        text: error.message || 'An unexpected error occurred.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
     }
   };
 
