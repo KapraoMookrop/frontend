@@ -47,9 +47,8 @@ export default function Page() {
       const res = await fetch(`https://backend-taupe-one.vercel.app/api/users/${id}`, {
         method: 'DELETE',
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, // ส่ง token ไปพร้อมกับการลบข้อมูล
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
       });
 
